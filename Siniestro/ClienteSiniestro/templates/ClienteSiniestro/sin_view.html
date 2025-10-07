@@ -1,0 +1,32 @@
+{% extends "ClienteSiniestro/base.html" %}
+
+{% block content %}
+       
+       <h1>Nuestra carta</h1>
+        <div>
+            <div class="d-flex flex-wrap">
+
+                <!--ESTO ES UN MENU-->
+                {% for menu in menu %}
+                <div class="col m-2">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{menu.imagen.url}}"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{menu.nombre}}</h5>
+                            <p class="card-text">{{menu.descripcion}}</p>
+                            <div class="is-grouped">
+                                <a href="#" class="btn btn-primary">Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <h3>Sin Siniestros</h3>
+                {% endfor %}
+                <!--FIN MENU-->
+
+
+            </div>
+        </div>
+{% endblock content %}

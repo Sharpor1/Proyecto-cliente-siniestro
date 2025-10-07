@@ -1,0 +1,13 @@
+{% extends "ClienteSiniestro/base.html" %}
+
+{% block content %}
+
+<h2>Formulario</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{form.as_p}}
+    <button type="submit" class="btn btn-success">Continuar</button>
+</form> 
+
+{% endblock content %}
