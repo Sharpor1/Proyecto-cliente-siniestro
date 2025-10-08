@@ -5,7 +5,6 @@ from .forms import SinisForm
 from django.contrib import messages
 
 # Create your views here.
-#pipipipipiipi
 
 def sinView(request):
     return render(request, 'ClienteSiniestro/sin_view.html')
@@ -24,4 +23,3 @@ def sinDetail(request):
 
 def sinEvid(request):
     return render(request, 'ClienteSiniestro/sin_evid.html')
-####ddddddddddddddddddd
