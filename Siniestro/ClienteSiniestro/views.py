@@ -22,3 +22,4 @@ def sinDetail(request):
 
 def sinEvid(request):
     return render(request, 'ClienteSiniestro/sin_evid.html')
+####ddddddddddddddddddd
