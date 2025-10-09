@@ -120,12 +120,12 @@ form button[type="submit"]:hover {
 ================================== */
 .descripcion-corta {
   display: -webkit-box;
-  -webkit-line-clamp: 3;      /* número de líneas visibles */
-  line-clamp: 3;              /* estándar para compatibilidad */
+  -webkit-line-clamp: 3;     
+  line-clamp: 3;             
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 4.5em;          /* controla altura según el tamaño de fuente */
+  max-height: 4.5em;         
   line-height: 1.5em;
 }
 
@@ -208,9 +208,6 @@ form button[type="submit"]:hover {
   font-weight: 500;
 }
 
-/* ===============================
-   FOOTER (opcional)
-================================== */
 footer {
   text-align: center;
   margin-top: 50px;

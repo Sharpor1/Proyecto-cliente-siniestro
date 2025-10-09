@@ -65,13 +65,13 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const bloques = [2,3,4,5];
-    // Oculta todos excepto el primero
+    // funcion que Oculta todos excepto el primero
     bloques.forEach(i => {
       const bloque = document.getElementById(`bloque${i}`);
       if (bloque) bloque.style.display = "none";
     });
 
-    // Función para mostrar el siguiente bloque cuando se sube una imagen
+    // Funcion para mostrar el siguiente bloque cuando se sube una imagen
     function mostrarSiguiente(indice) {
       const actual = document.getElementById(`id_imagen${indice}`);
       const siguiente = document.getElementById(`bloque${indice + 1}`);

@@ -14,9 +14,9 @@ def sinCreate(request):
     
     if request.method == "POST":
         if form.is_valid():
-            siniestro = form.save()  # Guarda y obtiene el objeto creado
+            siniestro = form.save() 
             messages.success(request, '¡Siniestro creado con éxito!')
-            # Redirige a la vista de evidencias con el id recién creado
+
             return redirect('evidence', id=siniestro.id)
         else:
             messages.error(request, 'Corrige los errores antes de continuar.')
@@ -37,8 +37,6 @@ def sinEvid(request, id):
         if form.is_valid():
             sin_obj = form.save(commit=False)
 
-            # 🔹 Para cada campo de imagen, si se sube una nueva, la reemplaza.
-            # Si no se sube nada, conserva la imagen existente.
             for i in range(1, 6):
                 imagen_campo = f"imagen{i}"
                 expli_campo = f"expli{i}"
@@ -50,7 +48,7 @@ def sinEvid(request, id):
                     # Mantiene la imagen anterior
                     setattr(sin_obj, imagen_campo, getattr(siniestro, imagen_campo))
                 else:
-                    # Si sube nueva imagen y no hay descripción, usa la anterior (si existe)
+
                     if not nueva_expli and getattr(siniestro, expli_campo):
                         setattr(sin_obj, expli_campo, getattr(siniestro, expli_campo))
 
