@@ -33,8 +33,12 @@ def sinEvid(request, id):
         if form.is_valid():
             form.save()
             messages.success(request, '¡Evidencias guardadas correctamente!')
-            return redirect('list')
+            return redirect('detail', id=siniestro.id)  # redirige al detalle del siniestro
         else:
             messages.error(request, 'Revisa los campos antes de guardar.')
 
-    return render(request, 'ClienteSiniestro/sin_evid.html', {'form': form, 'siniestro': siniestro})
+    context = {
+        'form': form,
+        'siniestro': siniestro,
+    }
+    return render(request, 'ClienteSiniestro/sin_evid.html', context)

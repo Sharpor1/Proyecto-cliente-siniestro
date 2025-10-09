@@ -4,9 +4,26 @@
 <h2>Subir evidencias para: {{ siniestro.asunto }}</h2>
 
 <form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" href="{% url 'evidence' %}">Guardar evidencias</button>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Guardar evidencias</button>
 </form>
+
+{% if siniestro.imagen1 %}
+<hr>
+<h3>Evidencias guardadas:</h3>
+<ul>
+    {% for i in "12345" %}
+        {% with img=siniestro|get_attr:"imagen"|add:i expl=siniestro|get_attr:"expli"|add:i %}
+            {% if img %}
+                <li>
+                    <img src="{{ img.url }}" alt="Imagen {{ i }}" style="max-height:150px;">
+                    <p>{{ expl }}</p>
+                </li>
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock content %}
