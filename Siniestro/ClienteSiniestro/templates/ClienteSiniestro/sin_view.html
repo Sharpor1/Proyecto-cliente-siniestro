@@ -2,7 +2,7 @@
 
 {% block content %}
        
-       <h1>Nuestra carta</h1>
+       <h1>Casos denunciados</h1>
         <div>
             <div class="d-flex flex-wrap">
 
@@ -10,7 +10,7 @@
                 {% for menu in menu %}
                 <div class="col m-2">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{menu.imagen.url}}"
+                        <img src="{{menu.imagen1.url}}"
                             class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{menu.tipo}}</h5>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 {% empty %}
-                <h3>Sin Siniestros</h3>
+                <h3>No se han denunciado siniestros aun</h3>
                 {% endfor %}
                 <!--FIN MENU-->
 
