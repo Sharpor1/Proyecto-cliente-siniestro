@@ -1,38 +1,97 @@
 {% extends "ClienteSiniestro/base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Subir evidencias para: {{ siniestro.asunto }}</h2>
+  <h2 class="mb-4">Subir evidencias para: {{ siniestro.asunto }}</h2>
 
-    <form method="post" enctype="multipart/form-data" class="mt-3">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Guardar evidencias</button>
-    </form>
+  <form method="post" enctype="multipart/form-data" class="mt-3">
+    {% csrf_token %}
 
-    <hr>
+    <!-- Bloque Imagen 1 -->
+    <div class="card mb-3 p-3 shadow-sm">
+      <h5 class="mb-2">Imagen 1</h5>
+      {% if siniestro.imagen1 %}
+        <img src="{{ siniestro.imagen1.url }}" width="150" class="mb-3 rounded shadow-sm"><br>
+      {% endif %}
+      <input type="file" name="imagen1" id="id_imagen1" class="form-control mb-2" accept="image/*">
+      <textarea name="expli1" class="form-control" rows="2" placeholder="Explicación...">{{ siniestro.expli1 }}</textarea>
+    </div>
 
-    <h4>Evidencias actuales</h4>
-    {% if siniestro.imagen1 or siniestro.imagen2 or siniestro.imagen3 or siniestro.imagen4 or siniestro.imagen5 %}
-        <ul>
-            {% if siniestro.imagen1 %}
-                <li><img src="{{ siniestro.imagen1.url }}" width="150"><br>{{ siniestro.expli1 }}</li>
-            {% endif %}
-            {% if siniestro.imagen2 %}
-                <li><img src="{{ siniestro.imagen2.url }}" width="150"><br>{{ siniestro.expli2 }}</li>
-            {% endif %}
-            {% if siniestro.imagen3 %}
-                <li><img src="{{ siniestro.imagen3.url }}" width="150"><br>{{ siniestro.expli3 }}</li>
-            {% endif %}
-            {% if siniestro.imagen4 %}
-                <li><img src="{{ siniestro.imagen4.url }}" width="150"><br>{{ siniestro.expli4 }}</li>
-            {% endif %}
-            {% if siniestro.imagen5 %}
-                <li><img src="{{ siniestro.imagen5.url }}" width="150"><br>{{ siniestro.expli5 }}</li>
-            {% endif %}
-        </ul>
-    {% else %}
-        <p>No se han subido evidencias todavía.</p>
-    {% endif %}
+    <!-- Bloque Imagen 2 -->
+    <div class="card mb-3 p-3 shadow-sm" id="bloque2">
+      <h5 class="mb-2">Imagen 2</h5>
+      {% if siniestro.imagen2 %}
+        <img src="{{ siniestro.imagen2.url }}" width="150" class="mb-3 rounded shadow-sm"><br>
+      {% endif %}
+      <input type="file" name="imagen2" id="id_imagen2" class="form-control mb-2" accept="image/*">
+      <textarea name="expli2" class="form-control" rows="2" placeholder="Explicación...">{{ siniestro.expli2 }}</textarea>
+    </div>
+
+    <!-- Bloque Imagen 3 -->
+    <div class="card mb-3 p-3 shadow-sm" id="bloque3">
+      <h5 class="mb-2">Imagen 3</h5>
+      {% if siniestro.imagen3 %}
+        <img src="{{ siniestro.imagen3.url }}" width="150" class="mb-3 rounded shadow-sm"><br>
+      {% endif %}
+      <input type="file" name="imagen3" id="id_imagen3" class="form-control mb-2" accept="image/*">
+      <textarea name="expli3" class="form-control" rows="2" placeholder="Explicación...">{{ siniestro.expli3 }}</textarea>
+    </div>
+
+    <!-- Bloque Imagen 4 -->
+    <div class="card mb-3 p-3 shadow-sm" id="bloque4">
+      <h5 class="mb-2">Imagen 4</h5>
+      {% if siniestro.imagen4 %}
+        <img src="{{ siniestro.imagen4.url }}" width="150" class="mb-3 rounded shadow-sm"><br>
+      {% endif %}
+      <input type="file" name="imagen4" id="id_imagen4" class="form-control mb-2" accept="image/*">
+      <textarea name="expli4" class="form-control" rows="2" placeholder="Explicación...">{{ siniestro.expli4 }}</textarea>
+    </div>
+
+    <!-- Bloque Imagen 5 -->
+    <div class="card mb-3 p-3 shadow-sm" id="bloque5">
+      <h5 class="mb-2">Imagen 5</h5>
+      {% if siniestro.imagen5 %}
+        <img src="{{ siniestro.imagen5.url }}" width="150" class="mb-3 rounded shadow-sm"><br>
+      {% endif %}
+      <input type="file" name="imagen5" id="id_imagen5" class="form-control mb-2" accept="image/*">
+      <textarea name="expli5" class="form-control" rows="2" placeholder="Explicación...">{{ siniestro.expli5 }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Guardar evidencias</button>
+  </form>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bloques = [2,3,4,5];
+    // Oculta todos excepto el primero
+    bloques.forEach(i => {
+      const bloque = document.getElementById(`bloque${i}`);
+      if (bloque) bloque.style.display = "none";
+    });
+
+    // Función para mostrar el siguiente bloque cuando se sube una imagen
+    function mostrarSiguiente(indice) {
+      const actual = document.getElementById(`id_imagen${indice}`);
+      const siguiente = document.getElementById(`bloque${indice + 1}`);
+      if (!actual || !siguiente) return;
+
+      actual.addEventListener("change", () => {
+        if (actual.files.length > 0) siguiente.style.display = "block";
+      });
+    }
+
+    mostrarSiguiente(1);
+    mostrarSiguiente(2);
+    mostrarSiguiente(3);
+    mostrarSiguiente(4);
+
+    // Si ya existen imágenes, mostramos los siguientes bloques
+    {% if siniestro.imagen1 %}document.getElementById("bloque2").style.display = "block";{% endif %}
+    {% if siniestro.imagen2 %}document.getElementById("bloque3").style.display = "block";{% endif %}
+    {% if siniestro.imagen3 %}document.getElementById("bloque4").style.display = "block";{% endif %}
+    {% if siniestro.imagen4 %}document.getElementById("bloque5").style.display = "block";{% endif %}
+  });
+</script>
 {% endblock %}

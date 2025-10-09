@@ -15,9 +15,7 @@
             <li class="list-group-item">Estado: {{ s.estado }}</li>
             <li class="list-group-item">
                 <a href="{% url 'detail' s.id %}" class="btn btn-primary">Detalle</a>
-                {% if s.estado == "sin evidencias" %}
                 <a href="{% url 'evidence' s.id %}" class="btn btn-warning">Agregar evidencias</a>
-                {% endif %}
             </li>
         </ul>
     </div>
