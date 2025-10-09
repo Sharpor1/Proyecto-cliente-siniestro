@@ -17,26 +17,37 @@ class Sinis(models.Model):
     expli3 = models.CharField(max_length=100, blank=True)
     expli4 = models.CharField(max_length=100, blank=True)
     expli5 = models.CharField(max_length=100, blank=True)
+    
+    estado = models.CharField(max_length=50, default='pendiente')
 
-def clean(self):
-    pares = [
-        (self.imagen1, self.expli1, '1'),
-        (self.imagen2, self.expli2, '2'),
-        (self.imagen3, self.expli3, '3'),
-        (self.imagen4, self.expli4, '4'),
-        (self.imagen5, self.expli5, '5'),
-    ]
+    def save(self, *args, **kwargs):
+        # Actualiza el estado según si hay imágenes
+        if not (self.imagen1 or self.imagen2 or self.imagen3 or self.imagen4 or self.imagen5):
+            self.estado = 'sin evidencias'
+        else:
+            self.estado = 'con evidencias'
+        super().save(*args, **kwargs)
 
-    errores = {}
+    def clean(self):
+        # Validación de pares imagen-descripción
+        pares = [
+            (self.imagen1, self.expli1, '1'),
+            (self.imagen2, self.expli2, '2'),
+            (self.imagen3, self.expli3, '3'),
+            (self.imagen4, self.expli4, '4'),
+            (self.imagen5, self.expli5, '5'),
+        ]
 
-    for imagen, expli, n in pares:
-        if imagen and not expli:
-            errores[f"expli{n}"] = f"Debe ingresar una descripción si se sube la imagen {n}."
-        if expli and not imagen:
-            errores[f"imagen{n}"] = f"Debe subir una imagen si escribe una descripción en expli{n}."
+        errores = {}
 
-    if errores:
-        raise ValidationError(errores)
+        for imagen, expli, n in pares:
+            if imagen and not expli:
+                errores[f"expli{n}"] = f"Debe ingresar una descripción si se sube la imagen {n}."
+            if expli and not imagen:
+                errores[f"imagen{n}"] = f"Debe subir una imagen si escribe una descripción en expli{n}."
 
-def __str__(self):
-      return self.asunto
+        if errores:
+            raise ValidationError(errores)
+
+    def __str__(self):
+        return self.asunto

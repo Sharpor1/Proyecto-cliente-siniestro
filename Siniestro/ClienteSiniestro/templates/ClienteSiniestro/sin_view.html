@@ -1,28 +1,29 @@
 {% extends "ClienteSiniestro/base.html" %}
 
 {% block content %}
-       
-       <h1>Casos denunciados</h1>
-        <div>
-            <div class="d-flex flex-wrap">
+<h1>Casos denunciados</h1>
+<div class="d-flex flex-wrap gap-3">
 
-                {% for s in sinis %}
-                
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{s.asunto}}</h5>
-                        <p class="card-text">{{s.descripcion}}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Fecha: {{s.fecha}}</li>
-                        <li class="list-group-item"> <a href=" {% url 'detail' id=s.id %} " class="btn btn-primary"> Detalle </a> </li>
-                    </ul>
-                </div>
-
-                {% empty %}
-                <h3>No se han denunciado siniestros aun</h3>
-                {% endfor %}
-
-            </div>
+    {% for s in sinis %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{ s.asunto }}</h5>
+            <p class="card-text">{{ s.descripcion }}</p>
         </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Fecha: {{ s.fecha }}</li>
+            <li class="list-group-item">Estado: {{ s.estado }}</li>
+            <li class="list-group-item">
+                <a href="{% url 'detail' s.id %}" class="btn btn-primary">Detalle</a>
+                {% if s.estado == "sin evidencias" %}
+                <a href="{% url 'evidence' s.id %}" class="btn btn-warning">Agregar evidencias</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    {% empty %}
+    <h3>No se han denunciado siniestros aun</h3>
+    {% endfor %}
+
+</div>
 {% endblock content %}
