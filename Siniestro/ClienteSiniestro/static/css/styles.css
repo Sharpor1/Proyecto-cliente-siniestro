@@ -1,0 +1,208 @@
+/* ===============================
+   ESTILO GLOBAL
+================================== */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  color: #003366;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  border-radius: 10px !important;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   NAVBAR
+================================== */
+.navbar {
+  background-color: #003366 !important;
+  border-bottom: 3px solid #00b4d8;
+}
+
+.navbar .nav-link {
+  color: #f8f9fa !important;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.navbar .nav-link:hover {
+  color: #00b4d8 !important;
+}
+
+.navbar .btn {
+  background-color: #00b4d8;
+  color: white;
+  border: none;
+}
+
+.navbar .btn:hover {
+  background-color: #0096c7;
+}
+
+/* ===============================
+   CONTENEDORES PRINCIPALES
+================================== */
+main.container {
+  margin-top: 50px;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* ===============================
+   FORMULARIOS
+================================== */
+form {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 15px rgba(0, 51, 102, 0.1);
+}
+
+form label {
+  font-weight: 600;
+  color: #003366;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="file"],
+form textarea,
+form select {
+  border-radius: 10px;
+  border: 1px solid #ccd;
+  padding: 10px 12px;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 5px rgba(0, 180, 216, 0.5);
+  outline: none;
+}
+
+form button[type="submit"] {
+  margin-top: 20px;
+  background-color: #00b4d8;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  font-weight: 600;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0096c7;
+}
+
+/* ===============================
+   TARJETAS DE SINIESTROS
+================================== */
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: #003366;
+  font-weight: 600;
+}
+
+.card .btn-primary {
+  background-color: #0077b6;
+  border: none;
+}
+
+.card .btn-primary:hover {
+  background-color: #005f8e;
+}
+
+.card .btn-warning {
+  background-color: #ffb703;
+  border: none;
+  color: #333;
+}
+
+.card .btn-warning:hover {
+  background-color: #ff9900;
+}
+
+/* ===============================
+   SECCIÓN DE EVIDENCIAS
+================================== */
+.evidencias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.evidencias div {
+  text-align: center;
+  background-color: #f9fafc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.evidencias div:hover {
+  transform: scale(1.02);
+}
+
+.evidencias img {
+  border-radius: 10px;
+  width: 200px;
+  height: auto;
+}
+
+/* ===============================
+   MENSAJES Y ALERTAS
+================================== */
+.alert-success {
+  background-color: #d1f7d1;
+  border-left: 6px solid #2d6a4f;
+  color: #1b4332;
+  font-weight: 500;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  border-left: 6px solid #a4161a;
+  color: #6a040f;
+  font-weight: 500;
+}
+
+/* ===============================
+   FOOTER (opcional)
+================================== */
+footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 15px 0;
+  color: #777;
+  font-size: 0.9rem;
+}
