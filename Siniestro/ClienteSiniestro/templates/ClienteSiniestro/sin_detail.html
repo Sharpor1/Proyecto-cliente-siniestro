@@ -1,0 +1,53 @@
+{% extends "ClienteSiniestro/base.html" %}
+
+{% block content %}
+<h2>Detalle del siniestro: {{ siniestro.asunto }}</h2>
+<p><strong>Fecha:</strong> {{ siniestro.fecha }}</p>
+<p><strong>Descripción general:</strong> {{ siniestro.descripcion }}</p>
+
+<hr>
+
+<h3>Evidencias</h3>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+  {% if siniestro.imagen1 %}
+  <div style="width: 220px; text-align: center;">
+    <img src="{{ siniestro.imagen1.url }}" alt="Imagen 1" style="width: 100%; border-radius: 10px; border: 1px solid #ccc;">
+    <p>{{ siniestro.expli1 }}</p>
+  </div>
+  {% endif %}
+
+  {% if siniestro.imagen2 %}
+  <div style="width: 220px; text-align: center;">
+    <img src="{{ siniestro.imagen2.url }}" alt="Imagen 2" style="width: 100%; border-radius: 10px; border: 1px solid #ccc;">
+    <p>{{ siniestro.expli2 }}</p>
+  </div>
+  {% endif %}
+
+  {% if siniestro.imagen3 %}
+  <div style="width: 220px; text-align: center;">
+    <img src="{{ siniestro.imagen3.url }}" alt="Imagen 3" style="width: 100%; border-radius: 10px; border: 1px solid #ccc;">
+    <p>{{ siniestro.expli3 }}</p>
+  </div>
+  {% endif %}
+
+  {% if siniestro.imagen4 %}
+  <div style="width: 220px; text-align: center;">
+    <img src="{{ siniestro.imagen4.url }}" alt="Imagen 4" style="width: 100%; border-radius: 10px; border: 1px solid #ccc;">
+    <p>{{ siniestro.expli4 }}</p>
+  </div>
+  {% endif %}
+
+  {% if siniestro.imagen5 %}
+  <div style="width: 220px; text-align: center;">
+    <img src="{{ siniestro.imagen5.url }}" alt="Imagen 5" style="width: 100%; border-radius: 10px; border: 1px solid #ccc;">
+    <p>{{ siniestro.expli5 }}</p>
+  </div>
+  {% endif %}
+
+</div>
+
+<a href="{% url 'list' %}" class="btn btn-secondary mt-3">Volver al listado</a>
+
+{% endblock %}
