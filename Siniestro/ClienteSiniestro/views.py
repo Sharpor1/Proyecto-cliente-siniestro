@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Sinis
 from .forms import SinisForm, EvidForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+@login_required
 def sinView(request):
     return render(request, 'ClienteSiniestro/sin_view.html', {'sinis': Sinis.objects.all})
 
+@login_required
 def sinCreate(request):
     form = SinisForm(request.POST or None, request.FILES or None)
     
@@ -20,11 +23,13 @@ def sinCreate(request):
 
     return render(request, 'ClienteSiniestro/sin_create.html', {'form': form})
 
+@login_required
 def sinDetail(request, id):
     # Vista de detalle de un siniestro
     siniestro = get_object_or_404(Sinis, id=id)
     return render(request, 'ClienteSiniestro/sin_detail.html', {'siniestro': siniestro})
 
+@login_required
 def sinEvid(request, id):
     siniestro = get_object_or_404(Sinis, id=id)
 
