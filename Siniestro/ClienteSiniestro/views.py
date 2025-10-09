@@ -4,7 +4,7 @@ from .forms import SinisForm, EvidForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-
+@login_required
 def sinView(request):
     return render(request, 'ClienteSiniestro/sin_view.html', {'sinis': Sinis.objects.all})
 
