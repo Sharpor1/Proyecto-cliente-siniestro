@@ -4,9 +4,8 @@ from .forms import SinisForm
 from django.contrib import messages
 
 def sinView(request):
-    # Lista de siniestros
-    siniestros = Sinis.objects.all()
-    return render(request, 'ClienteSiniestro/sin_view.html', {'menus': siniestros})
+    menu = Sinis.objects.all()
+    return render(request, 'ClienteSiniestro/sin_view.html', {'menus': menu})
 
 def sinCreate(request):
     # Crear nuevo siniestro
