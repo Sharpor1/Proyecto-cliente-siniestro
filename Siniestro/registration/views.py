@@ -9,10 +9,10 @@ def loginView(request):
     if request.method == 'POST':
         if form.is_valid():
             login(request, form.get_user())
-            return redirect('home')
+            return redirect('list')
         
     return render(request, 'registration/login.html', {'form':form})
 
 def logoutView(request):
     logout(request)
-    return redirect('home')
+    return redirect('list')
