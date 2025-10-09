@@ -7,15 +7,17 @@ def sinView(request):
     return render(request, 'ClienteSiniestro/sin_view.html', {'sinis': Sinis.objects.all})
 
 def sinCreate(request):
-    # Crear nuevo siniestro
     form = SinisForm(request.POST or None, request.FILES or None)
+    
     if request.method == "POST":
         if form.is_valid():
-            form.save()
+            siniestro = form.save()  # Guarda y obtiene el objeto creado
             messages.success(request, '¡Siniestro creado con éxito!')
-            return redirect('list')  # Asegúrate que 'list' exista en tus urls.py
+            # Redirige a la vista de evidencias con el id recién creado
+            return redirect('evidence', id=siniestro.id)
         else:
             messages.error(request, 'Corrige los errores antes de continuar.')
+
     return render(request, 'ClienteSiniestro/sin_create.html', {'form': form})
 
 def sinDetail(request, id):
