@@ -5,6 +5,6 @@ from .views import sinCreate, sinDetail, sinEvid, sinView
 urlpatterns = [
     path('', sinView, name='list'),
     path('create/', sinCreate, name='create'),
-    path('evidence/<int:id>', sinDetail, name='evidence'),
-    path('detail/<int:id>', sinEvid, name='detail')
+    path('evidence/<int:id>', sinEvid, name='evidence'),
+    path('detail/<int:id>', sinDetail, name='detail')
 ]

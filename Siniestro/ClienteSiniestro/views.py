@@ -26,6 +26,7 @@ def sinDetail(request, id):
     return render(request, 'ClienteSiniestro/sin_detail.html', {'siniestro': siniestro})
 
 def sinEvid(request, id):
+    print("🟢 ENTRÓ A sinEvid")
     siniestro = get_object_or_404(Sinis, id=id)
 
     # Carga el formulario SOLO con los campos de evidencia
@@ -35,7 +36,7 @@ def sinEvid(request, id):
         if form.is_valid():
             form.save()
             messages.success(request, "¡Evidencias guardadas correctamente!")
-            return redirect("detail", id=siniestro.id)
+            return redirect("list")
         else:
             messages.error(request, "Revisa los campos antes de guardar.")
 
