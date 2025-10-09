@@ -7,7 +7,7 @@
     {% csrf_token %}
 
     {{form.as_p}}
-    <button type="submit" class="btn btn-success">Continuar</button>
+    <button type="submit" class="btn btn-success" href="{% url 'list' %}">Continuar</button>
 </form> 
 
 {% endblock content %}
