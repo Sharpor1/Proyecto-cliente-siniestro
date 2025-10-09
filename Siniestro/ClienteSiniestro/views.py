@@ -1,26 +1,29 @@
-# Create your views here.
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Sinis
 from .forms import SinisForm
 from django.contrib import messages
 
-# Create your views here.
-
 def sinView(request):
     return render(request, 'ClienteSiniestro/sin_view.html', {'sinis': Sinis.objects.all})
 
 def sinCreate(request):
+    # Crear nuevo siniestro
     form = SinisForm(request.POST or None, request.FILES or None)
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            messages.success(request, 'Siniestro Creado!')
-            return redirect('list')
+            messages.success(request, '¡Siniestro creado con éxito!')
+            return redirect('list')  # Asegúrate que 'list' exista en tus urls.py
+        else:
+            messages.error(request, 'Corrige los errores antes de continuar.')
     return render(request, 'ClienteSiniestro/sin_create.html', {'form': form})
 
-def sinDetail(request):
-    return render(request, 'ClienteSiniestro/sin_detail.html')
+def sinDetail(request, id):
+    # Vista de detalle de un siniestro
+    siniestro = get_object_or_404(Sinis, id=id)
+    return render(request, 'ClienteSiniestro/sin_detail.html', {'siniestro': siniestro})
 
-
-def sinEvid(request):
-    return render(request, 'ClienteSiniestro/sin_evid.html')
+def sinEvid(request, id):
+    # Evidencias o imágenes asociadas al siniestro
+    siniestro = get_object_or_404(Sinis, id=id)
+    return render(request, 'ClienteSiniestro/sin_evid.html', {'siniestro': siniestro})
