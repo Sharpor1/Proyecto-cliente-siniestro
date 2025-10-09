@@ -7,7 +7,6 @@ from django.contrib import messages
 # Create your views here.
 
 def sinView(request):
-    sinis = Sinis.objects.all()
     return render(request, 'ClienteSiniestro/sin_view.html', {'sinis': Sinis.objects.all})
 
 def sinCreate(request):
