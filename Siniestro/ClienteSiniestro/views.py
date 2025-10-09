@@ -8,7 +8,8 @@ from django.contrib import messages
 #pipipipipiipi
 
 def sinView(request):
-    return render(request, 'ClienteSiniestro/sin_view.html')
+    menu = Sinis.objects.all()
+    return render(request, 'ClienteSiniestro/sin_view.html', {'menus': menu})
 
 def sinCreate(request):
     form = SinisForm(request.POST or None, request.FILES or None)
@@ -22,6 +23,6 @@ def sinCreate(request):
 def sinDetail(request):
     return render(request, 'ClienteSiniestro/sin_detail.html')
 
+
 def sinEvid(request):
     return render(request, 'ClienteSiniestro/sin_evid.html')
-####ddddddddddddddddddd
