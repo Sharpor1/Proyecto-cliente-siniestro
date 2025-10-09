@@ -26,7 +26,6 @@ def sinDetail(request, id):
     return render(request, 'ClienteSiniestro/sin_detail.html', {'siniestro': siniestro})
 
 def sinEvid(request, id):
-    print("🟢 ENTRÓ A sinEvid")
     siniestro = get_object_or_404(Sinis, id=id)
 
     # Carga el formulario SOLO con los campos de evidencia
@@ -44,6 +43,4 @@ def sinEvid(request, id):
         "form": form,
         "siniestro": siniestro,
     }
-    print("➡️ Siniestro:", siniestro.id)
-    print("➡️ Campos del form:", form.fields.keys())
     return render(request, "ClienteSiniestro/sin_evid.html", context)
