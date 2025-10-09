@@ -5,7 +5,6 @@ from .forms import SinisForm
 from django.contrib import messages
 
 # Create your views here.
-#pipipipipiipi
 
 def sinView(request):
     menu = Sinis.objects.all()
