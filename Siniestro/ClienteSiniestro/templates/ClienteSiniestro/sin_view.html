@@ -7,21 +7,16 @@
             <div class="d-flex flex-wrap">
 
                 <!--ESTO ES UN MENU-->
-                {% for menu in menu %}
-                <div class="col m-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{menu.imagen1.url}}"
-                            class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{menu.nombre}}</h5>
-                            <p class="card-text">{{menu.descripcion}}</p>
-                            <div class="is-grouped">
-                                <a href="#" class="btn btn-primary">Detail</a>
-                            </div>
-                        </div>
+                {% for s in Sinis %}
+                
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{s.asunto}}</h5>
+                        <p class="card-text">{{s.descripcion}}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Fecha: {{s.fecha}}</li>
+
                     </ul>
                 </div>
 
