@@ -1,0 +1,12 @@
+{% extends "ClienteSiniestro/base.html" %}
+
+{% block content %}
+<h2>Subir evidencias para: {{ siniestro.asunto }}</h2>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" href="{% url 'evidence' %}">Guardar evidencias</button>
+</form>
+
+{% endblock content %}

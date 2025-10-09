@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Sinis
-from .forms import SinisForm
+from .forms import SinisForm, EvidForm
 from django.contrib import messages
 
 def sinView(request):
@@ -24,6 +24,15 @@ def sinDetail(request, id):
     return render(request, 'ClienteSiniestro/sin_detail.html', {'siniestro': siniestro})
 
 def sinEvid(request, id):
-    # Evidencias o imágenes asociadas al siniestro
     siniestro = get_object_or_404(Sinis, id=id)
-    return render(request, 'ClienteSiniestro/sin_evid.html', {'siniestro': siniestro})
+    form = EvidForm(request.POST or None, request.FILES or None, instance=siniestro)
+
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Evidencias guardadas correctamente!')
+            return redirect('list')
+        else:
+            messages.error(request, 'Revisa los campos antes de guardar.')
+
+    return render(request, 'ClienteSiniestro/sin_evid.html', {'form': form, 'siniestro': siniestro})
