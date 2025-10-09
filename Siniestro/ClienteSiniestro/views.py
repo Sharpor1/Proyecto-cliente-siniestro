@@ -31,17 +31,34 @@ def sinDetail(request, id):
 
 def sinEvid(request, id):
     siniestro = get_object_or_404(Sinis, id=id)
-
-    # Carga el formulario SOLO con los campos de evidencia
     form = EvidForm(request.POST or None, request.FILES or None, instance=siniestro)
 
     if request.method == "POST":
         if form.is_valid():
-            form.save()
-            messages.success(request, "¡Evidencias guardadas correctamente!")
-            return redirect("list")
+            sin_obj = form.save(commit=False)
+
+            # 🔹 Para cada campo de imagen, si se sube una nueva, la reemplaza.
+            # Si no se sube nada, conserva la imagen existente.
+            for i in range(1, 6):
+                imagen_campo = f"imagen{i}"
+                expli_campo = f"expli{i}"
+
+                nueva_img = request.FILES.get(imagen_campo)
+                nueva_expli = request.POST.get(expli_campo)
+
+                if not nueva_img:
+                    # Mantiene la imagen anterior
+                    setattr(sin_obj, imagen_campo, getattr(siniestro, imagen_campo))
+                else:
+                    # Si sube nueva imagen y no hay descripción, usa la anterior (si existe)
+                    if not nueva_expli and getattr(siniestro, expli_campo):
+                        setattr(sin_obj, expli_campo, getattr(siniestro, expli_campo))
+
+            sin_obj.save()
+            messages.success(request, "✅ ¡Evidencias agregadas correctamente!")
+            return redirect("detail", id=siniestro.id)
         else:
-            messages.error(request, "Revisa los campos antes de guardar.")
+            messages.error(request, "⚠️ Revisa los campos antes de guardar.")
 
     context = {
         "form": form,

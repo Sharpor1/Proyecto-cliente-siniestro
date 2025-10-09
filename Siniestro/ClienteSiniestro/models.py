@@ -22,10 +22,10 @@ class Sinis(models.Model):
 
     def save(self, *args, **kwargs):
         # Actualiza el estado según si hay imágenes
-        if not (self.imagen1 or self.imagen2 or self.imagen3 or self.imagen4 or self.imagen5):
-            self.estado = 'sin evidencias'
-        else:
+        if any([self.imagen1, self.imagen2, self.imagen3, self.imagen4, self.imagen5]):
             self.estado = 'con evidencias'
+        else:
+            self.estado = 'sin evidencias'
         super().save(*args, **kwargs)
 
     def clean(self):

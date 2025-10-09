@@ -6,7 +6,8 @@ class SinisForm(forms.ModelForm):
         model = Sinis
         fields = '__all__'
         exclude = ['imagen1', 'imagen2', 'imagen3', 'imagen4', 'imagen5',
-                   'expli1', 'expli2', 'expli3', 'expli4', 'expli5']
+                   'expli1', 'expli2', 'expli3', 'expli4', 'expli5', 
+                   'estado']
         widgets = {
             'fecha': forms.DateInput(attrs={'type': 'date'})
         }
