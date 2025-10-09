@@ -27,18 +27,22 @@ def sinDetail(request, id):
 
 def sinEvid(request, id):
     siniestro = get_object_or_404(Sinis, id=id)
+
+    # Carga el formulario SOLO con los campos de evidencia
     form = EvidForm(request.POST or None, request.FILES or None, instance=siniestro)
 
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            messages.success(request, '¡Evidencias guardadas correctamente!')
-            return redirect('detail', id=siniestro.id)  # redirige al detalle del siniestro
+            messages.success(request, "¡Evidencias guardadas correctamente!")
+            return redirect("detail", id=siniestro.id)
         else:
-            messages.error(request, 'Revisa los campos antes de guardar.')
+            messages.error(request, "Revisa los campos antes de guardar.")
 
     context = {
-        'form': form,
-        'siniestro': siniestro,
+        "form": form,
+        "siniestro": siniestro,
     }
-    return render(request, 'ClienteSiniestro/sin_evid.html', context)
+    print("➡️ Siniestro:", siniestro.id)
+    print("➡️ Campos del form:", form.fields.keys())
+    return render(request, "ClienteSiniestro/sin_evid.html", context)

@@ -14,5 +14,10 @@ class SinisForm(forms.ModelForm):
 class EvidForm(forms.ModelForm):
     class Meta:
         model = Sinis
-        fields = ['imagen1', 'expli1', 'imagen2', 'expli2',
-                  'imagen3', 'expli3', 'imagen4', 'expli4', 'imagen5', 'expli5']
+        fields = [
+            "imagen1", "expli1",
+            "imagen2", "expli2",
+            "imagen3", "expli3",
+            "imagen4", "expli4",
+            "imagen5", "expli5",
+        ]
