@@ -118,6 +118,17 @@ form button[type="submit"]:hover {
 /* ===============================
    TARJETAS DE SINIESTROS
 ================================== */
+.descripcion-corta {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;      /* número de líneas visibles */
+  line-clamp: 3;              /* estándar para compatibilidad */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.5em;          /* controla altura según el tamaño de fuente */
+  line-height: 1.5em;
+}
+
 .card {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
