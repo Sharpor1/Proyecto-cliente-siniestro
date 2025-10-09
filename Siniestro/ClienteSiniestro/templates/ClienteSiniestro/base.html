@@ -20,7 +20,9 @@
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
               {% if user.is_authenticated %}
+
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{% url 'list' %}">Historial de siniestros</a>
               </li>
@@ -28,11 +30,6 @@
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="{% url 'create' %}">Registrar Siniestro</a>
                 </li>
-
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Inicie sesion</a>
-              </li>
 
               {% endif %}
              
@@ -58,17 +55,14 @@
 
     <main class="container">
       
-      {% if user.is_authenticated %}
+      
 
       {% block content %}
 
       {% endblock content %}
 
-      {% else %}
 
-      <h3> Requiere iniciar sesión para acceder a las funciones </h3>
       
-      {% endif %}
       
     </main>
   </body>
