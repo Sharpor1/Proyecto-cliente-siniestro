@@ -23,7 +23,7 @@ class Sinis(models.Model):
     def save(self, *args, **kwargs):
         # Actualiza el estado según si hay imágenes
         if any([self.imagen1, self.imagen2, self.imagen3, self.imagen4, self.imagen5]):
-            self.estado = 'con evidencias'
+            self.estado = 'esperando asignación'
         else:
             self.estado = 'sin evidencias'
         super().save(*args, **kwargs)
